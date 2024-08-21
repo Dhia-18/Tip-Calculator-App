@@ -14,9 +14,9 @@ const totalResult = document.getElementById("total");
 
 const resetButton = document.getElementById("reset-btn");
 
-function isNumeric(input) {
-    return /^\d+$/.test(input);
-  }
+function isFloat(input) {
+    return /^-?\d*\.?\d+$/.test(input);
+}
 
 function showError(input,error,msg){
     error.textContent=`${msg}`;
@@ -64,7 +64,7 @@ function validateInputs(){
         showError(billAmount,billAmountError,"Can't be zero");
         valid=false;
     }
-    else if(!isNumeric(billAmount.value)){
+    else if(!isFloat(billAmount.value)){
         showError(billAmount,billAmountError,"Must be a number");
         valid=false;
     }
@@ -73,8 +73,7 @@ function validateInputs(){
         percentageError.textContent="Can't be empty";
         valid=false;
     }
-
-    if(!isNumeric(customPercentage.value)){
+    else if(!checkedButton && !isFloat(customPercentage.value)){
         percentageError.textContent="Must be a number";
         valid=false;
     }
@@ -87,7 +86,7 @@ function validateInputs(){
         showError(numberOfPeople,numberOfPeopleError,"Can't be zero");
         valid=false;
     }
-    else if(!isNumeric(numberOfPeople.value)){
+    else if(!isFloat(numberOfPeople.value)){
         showError(numberOfPeople,numberOfPeopleError,"Must be a number");
         valid=false;
     }
